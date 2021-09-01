@@ -34,24 +34,27 @@ namespace RandomList
             app.il2cpp_class_get_method_from_name(klass, methodname.ToPointer(), app.NewObject(0,MemEnum.Int),out CObject<IntPtr> method);
             app.IsNull(method, endcalladdress);
             app.il2cpp_runtime_invoke(method, nullvalue, app.NewObject(IntPtr.Zero, MemEnum.IntPtr), app.NewObject(IntPtr.Zero, MemEnum.IntPtr), out CObject<IntPtr> ret);
+            app.il2cpp_class_get_name(klass, out CPointer<char> klassname);
             endcalladdress.Value = app.EndCall();
             while (true)
             {
                 Console.ReadKey();
                 Console.WriteLine("My Info");
-                CallMyInfo(app, ret, mycall);
+                CallMyInfo(app, ret, mycall, klassname);
             }
         }
-        public static void CallMyInfo(IL2CppApp app, CObject<IntPtr> result,IntPtr method)
+        public static void CallMyInfo(IL2CppApp app, CObject<IntPtr> result,IntPtr method, CPointer<char> cPointer)
         {
             app.Call(method);
             var val = result.Value;
             if (val != IntPtr.Zero)
             {
-                var level = app.ReadMem<int>(val + 0x10, MemEnum.Int);
-                var team = GetTeamName(app.ReadMem<int>(val + 0x14, MemEnum.Int));
-                var profileID = app.ReadMem<int>(val + 0x24, MemEnum.Int);
-                var actorid = app.ReadMem<int>(val + 0x28, MemEnum.Int);
+                var mvlocalplayer = new MVLocalPlayer();
+                mvlocalplayer.Inicialize(val, app);
+                var level = mvlocalplayer.Level;
+                var team = GetTeamName(mvlocalplayer.Team);
+                var profileID = mvlocalplayer.ProfileID;
+                var actorid = mvlocalplayer.ActorID;
                 Console.WriteLine($@"
 Level : {level}
 Team : {team}
@@ -82,4 +85,5 @@ Actor ID : {actorid}
         }
     }
 }
+
 ```
