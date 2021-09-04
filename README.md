@@ -14,7 +14,7 @@ namespace RandomList
             IL2CppApp app = new IL2CppApp(System.Diagnostics.Process.GetProcessesByName("kogama")[0]);
             
 
-            var methodname = app.NewString("get_GameSessionData", CStringType.Char);
+            var methodname = app.NewString("get_LocalPlayer", CStringType.Char);
             var nullvalue = app.NewObject<C4Bytes>(IntPtr.Zero);
             var classnameptr = app.NewString("MVGameControllerBase", CStringType.Char);
             var namespace_defaultptr = app.NewString("", CStringType.Char);
