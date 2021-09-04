@@ -14,53 +14,41 @@ namespace RandomList
             IL2CppApp app = new IL2CppApp(System.Diagnostics.Process.GetProcessesByName("kogama")[0]);
             
 
-            var methodname = app.NewString("get_LocalPlayer",CString.CStringType.Char);
-            var nullvalue = app.NewObject(IntPtr.Zero,MemEnum.IntPtr);
-            var classnameptr = app.NewString("MVGameControllerBase", CString.CStringType.Char);
-            var namespace_defaultptr = app.NewString("", CString.CStringType.Char);
-            var assemblynameptr = app.NewString("Assembly-CSharp", CString.CStringType.Char);
-            var endcalladdress = app.NewObject(IntPtr.Zero, MemEnum.IntPtr);
+            var methodname = app.NewString("get_GameSessionData", CStringType.Char);
+            var nullvalue = app.NewObject<C4Bytes>(IntPtr.Zero);
+            var classnameptr = app.NewString("MVGameControllerBase", CStringType.Char);
+            var namespace_defaultptr = app.NewString("", CStringType.Char);
+            var assemblynameptr = app.NewString("Assembly-CSharp", CStringType.Char);
+            var endcalladdress = app.NewObject<C4Bytes>(IntPtr.Zero);
 
             var mycall = app.CreateCall();
-            app.il2cpp_domain_get(out CObject<IntPtr> domain);
+            app.il2cpp_domain_get(out C4Bytes domain);
             app.IsNull(domain, endcalladdress);
-            app.il2cpp_thread_attach(domain, out CObject<IntPtr> thread);
-            app.il2cpp_domain_assembly_open(domain, assemblynameptr.ToPointer(), out CObject<IntPtr> assembly);
+            app.il2cpp_thread_attach(domain, out C4Bytes thread);
+            app.il2cpp_domain_assembly_open(domain, assemblynameptr.ToPointer(), out C4Bytes assembly);
             app.IsNull(assembly, endcalladdress);
-            app.il2cpp_assembly_get_image(assembly, out CObject<IntPtr> image);
+            app.il2cpp_assembly_get_image(assembly, out C4Bytes image);
             app.IsNull(image, endcalladdress);
-            app.il2cpp_class_from_name(image, namespace_defaultptr.ToPointer(), classnameptr.ToPointer(), out CObject<IntPtr> klass);
+            app.il2cpp_class_from_name(image, namespace_defaultptr.ToPointer(), classnameptr.ToPointer(), out C4Bytes klass);
             app.IsNull(klass, endcalladdress);
-            app.il2cpp_class_get_method_from_name(klass, methodname.ToPointer(), app.NewObject(0,MemEnum.Int),out CObject<IntPtr> method);
+            app.il2cpp_class_get_method_from_name(klass, methodname.ToPointer(), app.NewObject<C4Bytes>(0),out C4Bytes method);
             app.IsNull(method, endcalladdress);
-            app.il2cpp_runtime_invoke(method, nullvalue, app.NewObject(IntPtr.Zero, MemEnum.IntPtr), app.NewObject(IntPtr.Zero, MemEnum.IntPtr), out CObject<IntPtr> ret);
-            app.il2cpp_class_get_name(klass, out CPointer<char> klassname);
-            endcalladdress.Value = app.EndCall();
-            while (true)
-            {
-                Console.ReadKey();
-                Console.WriteLine("My Info");
-                CallMyInfo(app, ret, mycall, klassname);
-            }
+            app.il2cpp_runtime_invoke(method, nullvalue, app.NewObject<C4Bytes>(IntPtr.Zero), app.NewObject<C4Bytes>(IntPtr.Zero), out C4Bytes ret);
+            app.il2cpp_class_get_name(klass, out CPointer<CString> klassname);
+            endcalladdress.ValueIntPtr = app.EndCall();
+            CallMyInfo(app, ret, mycall, klassname);
         }
-        public static void CallMyInfo(IL2CppApp app, CObject<IntPtr> result,IntPtr method, CPointer<char> cPointer)
+        public static void CallMyInfo(IL2CppApp app, C4Bytes result,IntPtr method, CPointer<CString> cPointer)
         {
             app.Call(method);
-            var val = result.Value;
+            var val = result.ValueIntPtr;
             if (val != IntPtr.Zero)
             {
-                var mvlocalplayer = new MVLocalPlayer();
-                mvlocalplayer.Inicialize(val, app);
-                var level = mvlocalplayer.Level;
-                var team = GetTeamName(mvlocalplayer.Team);
-                var profileID = mvlocalplayer.ProfileID;
-                var actorid = mvlocalplayer.ActorID;
-                Console.WriteLine($@"
-Level : {level}
-Team : {team}
-Profile ID : {profileID}
-Actor ID : {actorid}
-");
+                var gamesession = new MVLocalPlayer(val, app);
+                Console.WriteLine(gamesession.ProfileId.Value);
+                Console.WriteLine(gamesession.ActorId.Value);
+                Console.ReadKey();
+                
             }
         }
         public static string GetTeamName(int id)
@@ -85,5 +73,6 @@ Actor ID : {actorid}
         }
     }
 }
+
 
 ```
