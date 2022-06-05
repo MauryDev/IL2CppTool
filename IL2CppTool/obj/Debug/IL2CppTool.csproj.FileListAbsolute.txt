@@ -1,0 +1,8 @@
+C:\Users\Glatrix\Desktop\BLOOP\IL2CppTool\obj\Debug\IL2CppTool.csproj.AssemblyReference.cache
+C:\Users\Glatrix\Desktop\BLOOP\IL2CppTool\obj\Debug\IL2CppTool.Resource1.resources
+C:\Users\Glatrix\Desktop\BLOOP\IL2CppTool\obj\Debug\IL2CppTool.csproj.GenerateResource.cache
+C:\Users\Glatrix\Desktop\BLOOP\IL2CppTool\obj\Debug\IL2CppTool.csproj.CoreCompileInputs.cache
+C:\Users\Glatrix\Desktop\BLOOP\IL2CppTool\bin\Debug\IL2CppTool.dll
+C:\Users\Glatrix\Desktop\BLOOP\IL2CppTool\bin\Debug\IL2CppTool.pdb
+C:\Users\Glatrix\Desktop\BLOOP\IL2CppTool\obj\Debug\IL2CppTool.dll
+C:\Users\Glatrix\Desktop\BLOOP\IL2CppTool\obj\Debug\IL2CppTool.pdb
