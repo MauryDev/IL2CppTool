@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Users\Glatrix\Desktop\BLOOP\IL2CppTool.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6461AF6D-A4F2-43AC-82A1-08035F18A09F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>IL2CppTool</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>IL2CppTool</RootNamespace>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllocationType.cs" />
+    <Compile Include="ExportedFunction.cs" />
+    <Compile Include="LibMethods.cs" />
+    <Compile Include="Memory.cs" />
+    <Compile Include="IL2CppApp.cs" />
+    <Compile Include="MemoryFreeType.cs" />
+    <Compile Include="MemoryProtection.cs" />
+    <Compile Include="MethodNative.cs" />
+    <Compile Include="Module.cs" />
+    <Compile Include="ModuleFilter.cs" />
+    <Compile Include="MODULEINFO.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="ProcessAccessFlags.cs" />
+    <Compile Include="ProcessUtil.cs" />
+    <Compile Include="Resource1.cs" />
+    <Compile Include="ThreadCreationFlags.cs" />
+    <Compile Include="WaitResult.cs" />
+    <Compile Include="Extensions\Helpers.cs" />
+    <Compile Include="MemType\CWString.cs" />
+    <Compile Include="MemType\CString.cs" />
+    <Compile Include="MemType\CVoid.cs" />
+    <Compile Include="MemType\CDouble.cs" />
+    <Compile Include="MemType\CFloat.cs" />
+    <Compile Include="MemType\CByte.cs" />
+    <Compile Include="MemType\C2Bytes.cs" />
+    <Compile Include="MemType\C8Bytes.cs" />
+    <Compile Include="MemType\C4Bytes.cs" />
+    <Compile Include="MemType\CArray`1.cs" />
+    <Compile Include="MemType\CPointer`1.cs" />
+    <Compile Include="MemType\CStringType.cs" />
+    <Compile Include="MemType\IStruct.cs" />
+    <Compile Include="MemType\ICPointer.cs" />
+    <Compile Include="MemType\Il2CppObject.cs" />
+    <Compile Include="MemType\IL2CppArray.cs" />
+    <Compile Include="MemType\IL2CppString.cs" />
+    <Compile Include="MemType\IObjectBase.cs" />
+    <Compile Include="MemType\MemEnum.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource1.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
